@@ -22,6 +22,23 @@ try
 //UTILIZZO METODI DELLA CLASSE EVENTO
 	mioEvento1.PrenotaPosti(postiPrenotati);
 
+	//CICLO PER RICHIEDERE ALL'UTENTE SE VUOLE DISDIRE O PRENOTARE ALTRI POSTI
+	Console.Write("Vuoi disdire dei posti? (si/no) ");
+	string sceltaUtente = Console.ReadLine();
+	sceltaUtente.ToLower();
+	while (sceltaUtente == "si" || sceltaUtente == "sì")
+	{
+		Console.Write("Indica il numero di posti da disdire: ");
+		int postiDaDisidire = int.Parse(Console.ReadLine());
+		mioEvento1.DisdiciPosti(postiDaDisidire);
+		Console.Write("Vuoi disdire dei posti? (si/no) ");
+		sceltaUtente = Console.ReadLine();
+	}
+	Console.WriteLine("Ok va bene!");
+	Console.WriteLine("");
+	Console.WriteLine("Numero di posti prenotati: " + mioEvento1.GetNumeroPostiPrenotati());
+	Console.WriteLine("Numero di posti disponibili: " + mioEvento1.GetCapienzaMassimaEvento());
+
 }
 catch(Exception e)
 {

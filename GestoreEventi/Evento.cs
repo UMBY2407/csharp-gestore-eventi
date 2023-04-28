@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -69,7 +70,7 @@ namespace GestoreEventi
 		public void PrenotaPosti(int posti)
 		{
 			int result = DateTime.Compare(DateTime.Now, dataEvento);
-			if (result < 0)
+			if (result > 0)
 			{
 				throw new Exception("L'Evento è già passato!");
 			}
@@ -86,14 +87,16 @@ namespace GestoreEventi
 
 			this.CapienzaMassimaEvento -= posti;
 			this.numeroPostiPrenotati += posti;
+			Console.WriteLine("");	//USO PER FORMATTARE
 			Console.WriteLine($"Numero di posti prenotati: {numeroPostiPrenotati}");
 			Console.WriteLine($"Numero posti disponibili: {CapienzaMassimaEvento}");
+			Console.WriteLine("");	//USO PER FORMATTARE
 		}
 
-		public void Disdiciosti(int numeroPosti)
+		public void DisdiciPosti(int numeroPosti)
 		{
 			int result = DateTime.Compare(DateTime.Now, dataEvento);
-			if (result < 0)
+			if (result > 0)
 			{
 				throw new Exception("L'Evento è già passato!");
 			}
@@ -103,10 +106,17 @@ namespace GestoreEventi
 				throw new ArgumentException("Nessun posto da disdire!", "posti");
 			}
 
+			if(numeroPosti > numeroPostiPrenotati)
+			{
+				throw new ArgumentException("I posti da disdire sono maggiori ai Posti Prenotati!", "numeroPosti");
+			}
+
 			this.CapienzaMassimaEvento += numeroPosti;
 			this.numeroPostiPrenotati -= numeroPosti;
+			Console.WriteLine("");  //USO PER FORMATTARE
 			Console.WriteLine($"Numero di posti prenotati: {numeroPostiPrenotati}");
 			Console.WriteLine($"Numero posti disponibili: {CapienzaMassimaEvento}");
+			Console.WriteLine("");  //USO PER FORMATTARE
 		}
 
 		public override string ToString()
