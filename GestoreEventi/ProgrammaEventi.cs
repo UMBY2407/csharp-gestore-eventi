@@ -26,7 +26,7 @@ namespace GestoreEventi
 		public void AddEvento(Evento eventoDaAggiungere)
 		{
 			eventi.Add(eventoDaAggiungere);
-			Console.WriteLine($"{eventoDaAggiungere} aggiunto alla lista Eventi!");
+			//Console.WriteLine($"{eventoDaAggiungere} aggiunto alla lista Eventi!");
 		}
 
 		public void EventiPerData(DateTime data)
@@ -42,7 +42,7 @@ namespace GestoreEventi
 			
 			foreach(Evento eventoLetto in eventiPerData)
 			{
-				Console.WriteLine(data + " - " + eventoLetto.GetTitolo());
+				Console.WriteLine(data.ToString("dd/MM/yyyy") + " - " + eventoLetto.GetTitolo());
 			}
 		}
 
@@ -60,7 +60,7 @@ namespace GestoreEventi
 		{
 			int numeroEventiNellaLista = 0;
 			numeroEventiNellaLista = eventi.Count();
-			Console.WriteLine("Il numero di eventi nel programma è:" + numeroEventiNellaLista);
+			Console.WriteLine("Il numero di eventi nel programma è: " + numeroEventiNellaLista);
 		}
 
 		public void SvuotaListaEventi()
@@ -74,7 +74,7 @@ namespace GestoreEventi
 			string stringaEvento = $"{this.titolo}:\n";
 			foreach (Evento eventoLetto in eventi)
 			{
-				stringaEvento += $"\t{eventoLetto.GetData()} - {eventoLetto.GetTitolo()}\n";
+				stringaEvento += $"\t{eventoLetto.GetData().ToString("dd/MM/yyyy")} - {eventoLetto.GetTitolo()}\n";
 			}
 			return stringaEvento;
 		}

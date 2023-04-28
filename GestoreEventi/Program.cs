@@ -24,8 +24,7 @@ try
 
 //CICLO PER RICHIEDERE ALL'UTENTE SE VUOLE DISDIRE O PRENOTARE ALTRI POSTI
 	Console.Write("Vuoi disdire dei posti? (si/no) ");
-	string sceltaUtente = Console.ReadLine();
-	sceltaUtente.ToLower();
+	string sceltaUtente = Console.ReadLine().ToLower();
 	while (sceltaUtente == "si" || sceltaUtente == "sì")
 	{
 		Console.Write("Indica il numero di posti da disdire: ");
@@ -38,49 +37,53 @@ try
 	Console.WriteLine("");
 	Console.WriteLine("Numero di posti prenotati: " + mioEvento1.GetNumeroPostiPrenotati());
 	Console.WriteLine("Numero di posti disponibili: " + mioEvento1.GetCapienzaMassimaEvento());
+	Console.WriteLine("");
 
-//CREAZIONE PROGRAMMA EVENTI
+	//CREAZIONE PROGRAMMA EVENTI
 	Console.Write("Inserisci il nome del tuo programma di eventi: ");
 	string titoloProgramma = Console.ReadLine();
-	try
+	if(titoloProgramma == "")
 	{
-		ProgrammaEventi mioProgramma = new ProgrammaEventi(titoloProgramma);
+		throw new ArgumentException("il titolo inserito risulta nullo", "titoloProgramma");
 	}
-	catch (Exception e)
-	{
-		Console.WriteLine("Si è verificato un errore durante la creazione del programma!");
-		Console.WriteLine(e.Message);
-	}
+
+	ProgrammaEventi mioProgramma = new ProgrammaEventi(titoloProgramma);
+	
 	Console.Write("Indica il numero di eventi da inserire: ");
 	int numeroEventi = int.Parse(Console.ReadLine());
-	Console.WriteLine("");  // PER FORMATTAZIONE
 
 	//CREAZIONE ED INSERIMENTO EVENTI NEL PROGRAMMA CREATO
-	for (int i = 0; i < numeroEventi - 1; i++)
+	for (int i = 0; i < numeroEventi; i++)
 	{
-		Console.Write($"Inserire il nome del {i+1} evento: ");
+		Console.WriteLine("");  // PER FORMATTAZIONE
+		Console.Write($"Inserire il nome del {i + 1}° evento: ");
 		nomeEvento = Console.ReadLine();
 
-		Console.Write("Inserisci la data dell'evento: ");
+		Console.Write("Inserisci la data dell'evento (gg/mm/yyyy): ");
 		dataEventoStringa = Console.ReadLine();
 		dataEvento = DateTime.Parse(dataEventoStringa);
 
 		Console.Write("Inserisci il numero di posti totali: ");
 		capienzaMaxEvento = int.Parse(Console.ReadLine());
 
-		try
-		{
-			Evento eventoProgramma = new Evento(nomeEvento, dataEvento, capienzaMaxEvento);
-		}catch(Exception e)
-		{
-			Console.WriteLine("Si è verificato un errore durante la creazione dell'evento...");
-			Console.WriteLine(e.Message);
-		}
-
+		Evento eventoProgramma = new Evento(nomeEvento, dataEvento, capienzaMaxEvento);
 		mioProgramma.AddEvento(eventoProgramma);
+		
+		Console.WriteLine("");  // PER FORMATTAZIONE
 	}
-//USO DEI METODI CLASSE PROGRAMMA EVENTO
+	//USO DEI METODI CLASSE PROGRAMMA EVENTO
+	
+	Console.WriteLine("");
+	mioProgramma.ContaNumeroEventi();
+	Console.WriteLine("Ecco il tuo programma eventi:");
+	Console.WriteLine(mioProgramma.TitoloEDataEventiInListaToString());
+	Console.WriteLine("");
 
+	Console.Write("Inserisci una data per sapere che eventi ci saranno (gg/mm/yyyy): ");
+	dataEventoStringa = Console.ReadLine();
+	DateTime eventoPerData = DateTime.Parse(dataEventoStringa);
+
+	mioProgramma.EventiPerData(eventoPerData);
 }
 catch(Exception e)
 {
