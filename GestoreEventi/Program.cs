@@ -1,2 +1,2 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using GestoreEventi;
 Console.WriteLine("Hello, World!");
