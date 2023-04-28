@@ -64,5 +64,15 @@ namespace GestoreEventi
 			this.eventi.Clear();
 			Console.WriteLine("Lista eventi svuotata!");
 		}
+
+		public string TitoloEDataEventiInListaToString()
+		{
+			string stringaEvento = $"{this.titolo}:\n";
+			foreach (Evento eventoLetto in eventi)
+			{
+				stringaEvento += $"\t{eventoLetto.GetData()} - {eventoLetto.GetTitolo()}\n";
+			}
+			return stringaEvento;
+		}
 	}
 }
