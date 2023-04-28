@@ -108,5 +108,12 @@ namespace GestoreEventi
 			Console.WriteLine($"Numero di posti prenotati: {numeroPostiPrenotati}");
 			Console.WriteLine($"Numero posti disponibili: {CapienzaMassimaEvento}");
 		}
+
+		public override string ToString()
+		{
+			string stringaEvento = dataEvento.ToString("dd/MM/yyyy");
+			stringaEvento += " - " + this.titolo;
+			return stringaEvento;
+		}
 	}
 }
