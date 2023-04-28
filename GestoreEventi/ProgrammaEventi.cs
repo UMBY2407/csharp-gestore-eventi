@@ -11,7 +11,6 @@ namespace GestoreEventi
 		//ATTRIBUTI
 		private string titolo;
 		private List<Evento> eventi = new List<Evento>();
-		private int numeroEventiNelProgramma = 0;
 
 		//COSTRUTTORE
 		public ProgrammaEventi(string titoloEvento)
@@ -19,17 +18,10 @@ namespace GestoreEventi
 			this.titolo = titoloEvento;
 		}
 
-		//GETTERS
-		public int GetNumeroEventiNelProgramma()
-		{
-			return this.numeroEventiNelProgramma;
-		}
-
 		//METODI
 		public void AddEvento(Evento eventoDaAggiungere)
 		{
 			eventi.Add(eventoDaAggiungere);
-			numeroEventiNelProgramma++;
 			Console.WriteLine($"{eventoDaAggiungere} aggiunto alla lista Eventi!");
 		}
 
@@ -58,6 +50,13 @@ namespace GestoreEventi
 				stringaEvento += eventoletto.ToString() + "\n";
 			}
 			return stringaEvento;
+		}
+
+		public void ContaNumeroEventi(List<Evento> listaEventi)
+		{
+			int numeroEventiNellaLista = 0;
+			numeroEventiNellaLista += listaEventi.Count();
+			Console.WriteLine("Il numero di eventi nel programma è:" + numeroEventiNellaLista);
 		}
 	}
 }
