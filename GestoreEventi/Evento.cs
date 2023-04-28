@@ -48,7 +48,7 @@ namespace GestoreEventi
 
 		public DateTime SetData(DateTime nuovaData)
 		{
-			int result = DateTime.Compare(this.dataEvento, nuovaData);
+			int result = DateTime.Compare(DateTime.Today, nuovaData);
 			if(result < 0)
 			{
 				throw new ArgumentException("La data inserita risulta già passata!", "nuovaData");
