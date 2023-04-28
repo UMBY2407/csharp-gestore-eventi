@@ -9,20 +9,27 @@ namespace GestoreEventi
 	public class ProgrammaEventi
 	{
 		//ATTRIBUTI
-		string titolo;
-		List<Evento> eventi;
+		private string titolo;
+		private List<Evento> eventi = new List<Evento>();
+		private int numeroEventiNelProgramma = 0;
 
 		//COSTRUTTORE
 		public ProgrammaEventi(string titoloEvento)
 		{
 			this.titolo = titoloEvento;
-			this.eventi = new List<Evento>();
+		}
+
+		//GETTERS
+		public int GetNumeroEventiNelProgramma()
+		{
+			return this.numeroEventiNelProgramma;
 		}
 
 		//METODI
 		public void AddEvento(Evento eventoDaAggiungere)
 		{
 			eventi.Add(eventoDaAggiungere);
+			numeroEventiNelProgramma++;
 			Console.WriteLine($"{eventoDaAggiungere} aggiunto alla lista Eventi!");
 		}
 
@@ -42,5 +49,20 @@ namespace GestoreEventi
 				Console.WriteLine(data + " - " + eventoLetto.GetTitolo());
 			}
 		}
+
+		public static class ListaEventi
+		{
+			public static string ListaEventiToString(List<Evento> listaEvento)
+			{
+				string stringaEvento = "";
+				foreach (Evento eventoletto in listaEvento)
+				{
+					stringaEvento += eventoletto.ToString() + "\n";
+				}
+				return stringaEvento;
+			}
+		}
+
+		
 	}
 }
