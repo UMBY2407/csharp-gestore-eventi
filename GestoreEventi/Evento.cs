@@ -48,7 +48,7 @@ namespace GestoreEventi
 
 		public DateTime SetData(DateTime nuovaData)
 		{
-			int result = DateTime.Compare(DateTime.Today, nuovaData);
+			int result = DateTime.Compare(DateTime.Now, nuovaData);
 			if(result < 0)
 			{
 				throw new ArgumentException("La data inserita risulta già passata!", "nuovaData");
@@ -63,6 +63,50 @@ namespace GestoreEventi
 			this.titolo = titoloEvento;
 			this.dataEvento = data;
 			this.CapienzaMassimaEvento = postiDisponibili;
+		}
+
+		//METODI
+		public void PrenotaPosti(int posti)
+		{
+			int result = DateTime.Compare(DateTime.Now, dataEvento);
+			if (result < 0)
+			{
+				throw new Exception("L'Evento è già passato!");
+			}
+
+			if (CapienzaMassimaEvento == 0)
+			{
+				throw new Exception("Nessun posto Disponibile!");
+			}
+
+			if (posti == 0)
+			{
+				throw new ArgumentException("Nessun posto da prenotare!", "posti");
+			}
+
+			this.CapienzaMassimaEvento -= posti;
+			this.numeroPostiPrenotati += posti;
+			Console.WriteLine($"Numero di posti prenotati: {numeroPostiPrenotati}");
+			Console.WriteLine($"Numero posti disponibili: {CapienzaMassimaEvento}");
+		}
+
+		public void Disdiciosti(int numeroPosti)
+		{
+			int result = DateTime.Compare(DateTime.Now, dataEvento);
+			if (result < 0)
+			{
+				throw new Exception("L'Evento è già passato!");
+			}
+
+			if (numeroPosti == 0)
+			{
+				throw new ArgumentException("Nessun posto da disdire!", "posti");
+			}
+
+			this.CapienzaMassimaEvento += numeroPosti;
+			this.numeroPostiPrenotati -= numeroPosti;
+			Console.WriteLine($"Numero di posti prenotati: {numeroPostiPrenotati}");
+			Console.WriteLine($"Numero posti disponibili: {CapienzaMassimaEvento}");
 		}
 	}
 }
