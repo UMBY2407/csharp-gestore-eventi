@@ -55,8 +55,14 @@ namespace GestoreEventi
 		public void ContaNumeroEventi(List<Evento> listaEventi)
 		{
 			int numeroEventiNellaLista = 0;
-			numeroEventiNellaLista += listaEventi.Count();
+			numeroEventiNellaLista = listaEventi.Count();
 			Console.WriteLine("Il numero di eventi nel programma è:" + numeroEventiNellaLista);
+		}
+
+		public void SvuotaListaEventi()
+		{
+			this.eventi.Clear();
+			Console.WriteLine("Lista eventi svuotata!");
 		}
 	}
 }
