@@ -15,6 +15,10 @@ namespace GestoreEventi
 		//COSTRUTTORE
 		public ProgrammaEventi(string titoloEvento)
 		{
+			if(titoloEvento == "")
+			{
+				throw new ArgumentException("Il titolo inserito non esiste!", "titoloEvento");
+			}
 			this.titolo = titoloEvento;
 		}
 
@@ -52,10 +56,10 @@ namespace GestoreEventi
 			return stringaEvento;
 		}
 
-		public void ContaNumeroEventi(List<Evento> listaEventi)
+		public void ContaNumeroEventi()
 		{
 			int numeroEventiNellaLista = 0;
-			numeroEventiNellaLista = listaEventi.Count();
+			numeroEventiNellaLista = eventi.Count();
 			Console.WriteLine("Il numero di eventi nel programma è:" + numeroEventiNellaLista);
 		}
 
