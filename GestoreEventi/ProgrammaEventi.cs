@@ -50,19 +50,14 @@ namespace GestoreEventi
 			}
 		}
 
-		public static class ListaEventi
+		public static string ListaEventiToString(List<Evento> listaEvento)
 		{
-			public static string ListaEventiToString(List<Evento> listaEvento)
+			string stringaEvento = "";
+			foreach (Evento eventoletto in listaEvento)
 			{
-				string stringaEvento = "";
-				foreach (Evento eventoletto in listaEvento)
-				{
-					stringaEvento += eventoletto.ToString() + "\n";
-				}
-				return stringaEvento;
+				stringaEvento += eventoletto.ToString() + "\n";
 			}
+			return stringaEvento;
 		}
-
-		
 	}
 }
