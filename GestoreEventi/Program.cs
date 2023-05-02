@@ -42,7 +42,7 @@ try
 
 
 //CREAZIONE PROGRAMMA EVENTI
-Console.Write("Inserisci il nome del tuo programma di eventi: ");
+	Console.Write("Inserisci il nome del tuo programma di eventi: ");
 	string titoloProgramma = Console.ReadLine();
 	ProgrammaEventi mioProgramma = new ProgrammaEventi(titoloProgramma);
 
@@ -126,7 +126,7 @@ Console.Write("Inserisci il nome del tuo programma di eventi: ");
 	}
 //USO DEI METODI CLASSE PROGRAMMA EVENTO
 
-Console.WriteLine("");
+	Console.WriteLine("");
 	mioProgramma.ContaNumeroEventi();
 	Console.WriteLine("Ecco il tuo programma eventi:");
 	Console.WriteLine(mioProgramma.TitoloEDataEventiInListaToString());
